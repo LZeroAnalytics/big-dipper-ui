@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo';
 import useAppTranslation from '@/hooks/useAppTranslation';
-import DesmosProfile from '@/components/desmos_profile';
 import Layout from '@/components/layout';
 import LoadAndExist from '@/components/load_and_exist';
 import Balance from '@/screens/account_details/components/balance';
@@ -29,16 +28,6 @@ const AccountDetails = () => {
       <Layout navTitle={t('accountDetails') ?? undefined}>
         <LoadAndExist loading={profileState.loading} exists={accountBalanceState.exists}>
           <span className={classes.root}>
-            {!!profileState.desmosProfile && (
-              <DesmosProfile
-                dtag={profileState.desmosProfile.dtag}
-                nickname={profileState.desmosProfile.nickname}
-                imageUrl={profileState.desmosProfile.imageUrl}
-                bio={profileState.desmosProfile.bio}
-                connections={profileState.desmosProfile.connections}
-                coverUrl={profileState.desmosProfile.coverUrl}
-              />
-            )}
             <Overview className={classes.overview} />
             {!profileState.loading ? (
               <>

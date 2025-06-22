@@ -141,11 +141,7 @@ function createApolloClient(initialState = {}) {
         httpLink
       );
 
-  const graphlqllink = split(
-    ({ operationName }) => /^DesmosProfile/.test(operationName),
-    createHttpBatchLink(profileApi()),
-    httpOrWsLink
-  );
+  const graphlqllink = httpOrWsLink;
 
   const link = split(
     ({ operationName }) => operationName === 'Rest',

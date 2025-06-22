@@ -1390,26 +1390,7 @@ export type User_Relationship_Variance_Fields = {
   subspace_id?: Maybe<Scalars['Float']>;
 };
 
-export type DesmosProfileQueryVariables = Exact<{
-  addresses?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
 
-
-export type DesmosProfileQuery = { profile: Array<{ __typename?: 'profile', address: string, bio: string, dtag: string, nickname: string, profilePic: string, coverPic: string, creationTime: any, chainLinks: Array<{ __typename?: 'chain_link', creationTime: any, externalAddress: string, chainConfig: { __typename?: 'chain_link_chain_config', name: string } }>, applicationLinks: Array<{ __typename?: 'application_link', username: string, application: string, creationTime: any }> }> };
-
-export type DesmosProfileLinkQueryVariables = Exact<{
-  addresses?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
-
-
-export type DesmosProfileLinkQuery = { profile: Array<{ __typename?: 'profile', address: string, bio: string, dtag: string, nickname: string, profilePic: string, coverPic: string, creationTime: any, chainLinks: Array<{ __typename?: 'chain_link', creationTime: any, externalAddress: string, chainConfig: { __typename?: 'chain_link_chain_config', name: string } }>, applicationLinks: Array<{ __typename?: 'application_link', username: string, application: string, creationTime: any }> }> };
-
-export type DesmosProfileDtagQueryVariables = Exact<{
-  dtag?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type DesmosProfileDtagQuery = { profile: Array<{ __typename?: 'profile', address: string, bio: string, dtag: string, nickname: string, profilePic: string, coverPic: string, creationTime: any, chainLinks: Array<{ __typename?: 'chain_link', creationTime: any, externalAddress: string, chainConfig: { __typename?: 'chain_link_chain_config', name: string } }>, applicationLinks: Array<{ __typename?: 'application_link', username: string, application: string, creationTime: any }> }> };
 
 
 export const DesmosProfileDocument = gql`
@@ -1440,33 +1421,7 @@ export const DesmosProfileDocument = gql`
 }
     `;
 
-/**
- * __useDesmosProfileQuery__
- *
- * To run a query within a React component, call `useDesmosProfileQuery` and pass it any options that fit your needs.
- * When your component renders, `useDesmosProfileQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDesmosProfileQuery({
- *   variables: {
- *      addresses: // value for 'addresses'
- *   },
- * });
- */
-export function useDesmosProfileQuery(baseOptions?: Apollo.QueryHookOptions<DesmosProfileQuery, DesmosProfileQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<DesmosProfileQuery, DesmosProfileQueryVariables>(DesmosProfileDocument, options);
-      }
-export function useDesmosProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DesmosProfileQuery, DesmosProfileQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<DesmosProfileQuery, DesmosProfileQueryVariables>(DesmosProfileDocument, options);
-        }
-export type DesmosProfileQueryHookResult = ReturnType<typeof useDesmosProfileQuery>;
-export type DesmosProfileLazyQueryHookResult = ReturnType<typeof useDesmosProfileLazyQuery>;
-export type DesmosProfileQueryResult = Apollo.QueryResult<DesmosProfileQuery, DesmosProfileQueryVariables>;
+
 export const DesmosProfileLinkDocument = gql`
     query DesmosProfileLink($addresses: [String!]) {
   profile(where: {chain_links: {external_address: {_in: $addresses}}}) {

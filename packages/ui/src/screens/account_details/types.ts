@@ -34,12 +34,6 @@ export interface AccountBalanceState {
   rewards: RewardsType;
 }
 
-export interface AccountDesmosProfileState {
-  exists: boolean;
-  loading: boolean;
-  desmosProfile: DesmosProfile | null;
-}
-
 export interface AccountWithdrawalAddressState {
   loading: boolean;
   overview: OverviewType;

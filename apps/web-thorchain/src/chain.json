@@ -5,7 +5,7 @@
     "profile": true,
     "graphqlWs": false
   },
-  "previewImage": "https://s3.bigdipper.live/desmos.png",
+  "previewImage": "https://s3.bigdipper.live/thorchain.png",
   "themes": {
     "default": "light",
     "themeList": [
@@ -16,12 +16,12 @@
     ],
     "dark": {
       "primary": {
-        "main": "#FF835B",
+        "main": "#2cbe8c",
         "contrastText": "#FFFFFF"
       },
       "background": {
-        "default": "#000000",
-        "paper": "#131316"
+        "default": "#0d0f12",
+        "paper": "#101416"
       },
       "divider": "#282828",
       "text": {
@@ -30,10 +30,10 @@
       },
       "custom": {
         "general": {
-          "background": "#000000",
-          "surfaceOne": "#131316",
-          "surfaceTwo": "#212123",
-          "icon": "#999999"
+          "background": "#0d0f12",
+          "surfaceOne": "#101416",
+          "surfaceTwo": "#1c242b",
+          "icon": "#9bb2ba"
         },
         "fonts": {
           "fontOne": "#E6E6E6",
@@ -111,7 +111,7 @@
     },
     "light": {
       "primary": {
-        "main": "#FF835B",
+        "main": "#3ca38b",
         "contrastText": "#FFFFFF"
       },
       "background": {
@@ -205,32 +205,32 @@
       }
     }
   },
-  "keplr": "{\"chainId\":\"desmos-mainnet\",\"chainName\":\"Desmos\",\"chainSymbolImageUrl\":\"https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/desmos-mainnet/chain.png\",\"rpc\":\"https://rpc.mainnet.desmos.network\",\"rest\":\"https://api.mainnet.desmos.network\",\"nodeProvider\":{\"name\":\"Forbole\",\"email\":\"info@forbole.com\",\"website\":\"https://www.forbole.com\"},\"bip44\":{\"coinType\":852},\"bech32Config\":{\"bech32PrefixAccAddr\":\"desmos\",\"bech32PrefixAccPub\":\"desmospub\",\"bech32PrefixValAddr\":\"desmosvaloper\",\"bech32PrefixValPub\":\"desmosvaloperpub\",\"bech32PrefixConsAddr\":\"desmosvalcons\",\"bech32PrefixConsPub\":\"desmosvalconspub\"},\"currencies\":[{\"coinDenom\":\"DSM\",\"coinMinimalDenom\":\"udsm\",\"coinDecimals\":6,\"coinGeckoId\":\"desmos\"}],\"feeCurrencies\":[{\"coinDenom\":\"DSM\",\"coinMinimalDenom\":\"udsm\",\"coinDecimals\":6,\"coinGeckoId\":\"desmos\",\"gasPriceStep\":{\"low\":0.01,\"average\":0.03,\"high\":0.05}}],\"stakeCurrency\":{\"coinDenom\":\"DSM\",\"coinMinimalDenom\":\"udsm\",\"coinDecimals\":6,\"coinGeckoId\":\"desmos\"},\"features\":[]}",
+  "keplr": "{\"chainId\":\"thorchain-mainnet-v1\",\"chainName\":\"THORChain\",\"chainSymbolImageUrl\":\"https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/thorchain-mainnet-v1/chain.png\",\"rpc\":\"${NEXT_PUBLIC_RPC_WEBSOCKET}\",\"rest\":\"${NEXT_PUBLIC_GRAPHQL_URL}\",\"nodeProvider\":{\"name\":\"THORChain\",\"email\":\"contact@thorchain.org\",\"website\":\"https://thorchain.org\"},\"bip44\":{\"coinType\":931},\"bech32Config\":{\"bech32PrefixAccAddr\":\"thor\",\"bech32PrefixAccPub\":\"thorpub\",\"bech32PrefixValAddr\":\"thorvaloper\",\"bech32PrefixValPub\":\"thorvaloperpub\",\"bech32PrefixConsAddr\":\"thorvalcons\",\"bech32PrefixConsPub\":\"thorvalconspub\"},\"currencies\":[{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\"}],\"feeCurrencies\":[{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\",\"gasPriceStep\":{\"low\":0.01,\"average\":0.03,\"high\":0.05}}],\"stakeCurrency\":{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\"},\"features\":[]}",
   "chains": [
     {
-      "network": "desmos-mainnet",
+      "network": "thorchain-mainnet-v1",
       "chainType": "Mainnet",
       "genesis": {
-        "time": "2021-08-31T16:15:00",
+        "time": "2021-04-13T17:00:00",
         "height": 1
       },
       "prefix": {
-        "consensus": "desmosvalcons",
-        "validator": "desmosvaloper",
-        "account": "desmos"
+        "consensus": "thorvalcons",
+        "validator": "thorvaloper",
+        "account": "thor"
       },
-      "primaryTokenUnit": "udsm",
-      "votingPowerTokenUnit": "udsm",
+      "primaryTokenUnit": "rune",
+      "votingPowerTokenUnit": "rune",
       "tokenUnits": {
-        "udsm": {
-          "display": "dsm",
-          "exponent": 6
+        "rune": {
+          "display": "RUNE",
+          "exponent": 8
         }
       },
       "endpoints": {
-        "graphql": "https://gql.desmos.forbole.com/v1/graphql",
-        "graphqlWebsocket": "wss://gql.desmos.forbole.com/v1/graphql",
-        "publicRpcWebsocket": "wss://rpc.desmos.forbole.com/websocket"
+        "graphql": "${NEXT_PUBLIC_GRAPHQL_URL}",
+        "graphqlWebsocket": "${NEXT_PUBLIC_GRAPHQL_WS}",
+        "publicRpcWebsocket": "${NEXT_PUBLIC_RPC_WEBSOCKET}"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",
@@ -238,29 +238,29 @@
       }
     },
     {
-      "network": "morpheus-apollo-3",
+      "network": "thorchain-stagenet",
       "chainType": "Testnet",
       "genesis": {
-        "time": "2022-10-24T08:00:00",
-        "height": 7942286
+        "time": "2021-04-13T17:00:00",
+        "height": 1
       },
       "prefix": {
-        "consensus": "desmosvalcons",
-        "validator": "desmosvaloper",
-        "account": "desmos"
+        "consensus": "thorvalcons",
+        "validator": "thorvaloper",
+        "account": "thor"
       },
-      "primaryTokenUnit": "udaric",
-      "votingPowerTokenUnit": "udaric",
+      "primaryTokenUnit": "rune",
+      "votingPowerTokenUnit": "rune",
       "tokenUnits": {
-        "udaric": {
-          "display": "daric",
-          "exponent": 6
+        "rune": {
+          "display": "RUNE",
+          "exponent": 8
         }
       },
       "endpoints": {
-        "graphql": "https://gql-morpheus.desmos.forbole.com/v1/graphql",
-        "graphqlWebsocket": "wss://gql-morpheus.desmos.forbole.com/v1/graphql",
-        "publicRpcWebsocket": "wss://rpc-morpheus.desmos.forbole.com/websocket"
+        "graphql": "${NEXT_PUBLIC_GRAPHQL_URL}",
+        "graphqlWebsocket": "${NEXT_PUBLIC_GRAPHQL_WS}",
+        "publicRpcWebsocket": "${NEXT_PUBLIC_RPC_WEBSOCKET}"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",

@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo';
 import useAppTranslation from '@/hooks/useAppTranslation';
-import DesmosProfile from '@/components/desmos_profile';
 import Layout from '@/components/layout';
 import Blocks from '@/screens/validator_details/components/blocks';
 import Profile from '@/screens/validator_details/components/profile';
@@ -20,7 +19,7 @@ const ValidatorDetails = () => {
   const { t } = useAppTranslation('validators');
   const { classes } = useStyles();
   const { state, loading } = useValidatorProfileDetails();
-  const { exists, desmosProfile, operatorAddress } = state;
+  const { exists, operatorAddress } = state;
   const { state: validatorOverviewState, loading: validatorOverviewLoading } =
     useValidatorOverviewDetails();
   const { state: validatorVPState, loading: validatorVPLoading } = useValidatorVotingPowerDetails();
@@ -37,15 +36,11 @@ const ValidatorDetails = () => {
         <LoadAndExist loading={loading} exists={state.exists}>
           <div>
             <span className={classes.root}>
-              {exists && desmosProfile ? (
-                <DesmosProfile className={classes.profile} {...desmosProfile} loading={loading} />
-              ) : (
-                <Profile
-                  className={classes.profile}
-                  profile={validatorOverviewState.overview}
-                  loading={loading}
-                />
-              )}
+              <Profile
+                className={classes.profile}
+                profile={validatorOverviewState.overview}
+                loading={loading}
+              />
               {!loading ? (
                 <>
                   <ValidatorOverview

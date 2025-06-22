@@ -1,7 +1,9 @@
 import chainJson from '@/chain.json';
 import type { ChainConfig } from '@/chainConfig/types';
 
-const chainTypes = [process.env.NEXT_PUBLIC_CHAIN_TYPE];
+const chainTypes = [
+  typeof process !== 'undefined' && process.env ? process.env.NEXT_PUBLIC_CHAIN_TYPE : undefined,
+];
 
 function chainConfig() {
   /* Setting the basePath, chainType, chains, and settings variables. */
@@ -16,16 +18,41 @@ function chainConfig() {
   if (!chain) [chain] = chains;
   if (!chain) throw new Error(`Config not found for CHAIN_NAME ${chainJson.chainName}`);
 
-  const basePath = (process.env.BASE_PATH || `${`/${settings.chainName}`}`).replace(
-    /^(\/|\/base)$/,
-    ''
-  );
+  const basePath = (
+    (typeof process !== 'undefined' && process.env ? process.env.BASE_PATH : undefined) ||
+    `${`/${settings.chainName}`}`
+  ).replace(/^(\/|\/base)$/, '');
 
-  /* Merging the settings and chain objects. */
+  /* Merging the settings and chain objects and processing environment variables. */
+  const processedChain = {
+    ...chain,
+    endpoints: {
+      ...chain.endpoints,
+      graphql: chain.endpoints?.graphql?.replace(
+        '${NEXT_PUBLIC_GRAPHQL_URL}',
+        (typeof process !== 'undefined' && process.env
+          ? process.env.NEXT_PUBLIC_GRAPHQL_URL
+          : undefined) || chain.endpoints.graphql
+      ),
+      graphqlWebsocket: chain.endpoints?.graphqlWebsocket?.replace(
+        '${NEXT_PUBLIC_GRAPHQL_WS}',
+        (typeof process !== 'undefined' && process.env
+          ? process.env.NEXT_PUBLIC_GRAPHQL_WS
+          : undefined) || chain.endpoints.graphqlWebsocket
+      ),
+      publicRpcWebsocket: chain.endpoints?.publicRpcWebsocket?.replace(
+        '${NEXT_PUBLIC_RPC_WEBSOCKET}',
+        (typeof process !== 'undefined' && process.env
+          ? process.env.NEXT_PUBLIC_RPC_WEBSOCKET
+          : undefined) || chain.endpoints.publicRpcWebsocket
+      ),
+    },
+  };
+
   return {
     ...settings,
     basePath,
-    ...chain,
+    ...processedChain,
   } as unknown as ChainConfig;
 }
 

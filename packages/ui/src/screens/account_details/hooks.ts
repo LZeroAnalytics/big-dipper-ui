@@ -3,12 +3,11 @@ import { useRouter } from 'next/router';
 import * as R from 'ramda';
 import { useCallback, useEffect, useState } from 'react';
 import chainConfig from '@/chainConfig';
-import { useDesmosProfile } from '@/hooks/use_desmos_profile';
+
 import type {
   BalanceType,
   OtherTokenType,
   AccountWithdrawalAddressState,
-  AccountDesmosProfileState,
   AccountBalanceState,
   AccountRewardsState,
 } from '@/screens/account_details/types';
@@ -48,12 +47,6 @@ const balanceInitialState: AccountBalanceState = {
     total: defaultTokenUnit,
   },
   rewards: {},
-};
-
-const desmosProfileInitialState: AccountDesmosProfileState = {
-  loading: true,
-  exists: true,
-  desmosProfile: null,
 };
 
 const withdrawalAddrInitialState: AccountWithdrawalAddressState = {
@@ -230,31 +223,7 @@ const formatAllBalance = (data: Data) => {
 };
 
 export const useAccountProfileDetails = () => {
-  const router = useRouter();
-  const [state, setState] = useState<AccountDesmosProfileState>(desmosProfileInitialState);
-
-  const address = Array.isArray(router.query.address)
-    ? router.query.address[0]
-    : router.query.address ?? '';
-
-  // ==========================
-  // Desmos Profile
-  // ==========================
-  const { data: dataDesmosProfile, loading: loadingDesmosProfile } = useDesmosProfile({
-    addresses: [address],
-    skip: !extra.profile || !address,
-  });
-  useEffect(
-    () =>
-      setState((prevState) => ({
-        ...prevState,
-        desmosProfile: dataDesmosProfile?.[0],
-        loading: loadingDesmosProfile,
-      })),
-    [dataDesmosProfile, loadingDesmosProfile]
-  );
-
-  return { profileState: state };
+  return { profileState: { loading: false, exists: false, desmosProfile: null } };
 };
 
 export const useAccountBalance = () => {
@@ -272,7 +241,7 @@ export const useAccountBalance = () => {
   );
   const address = Array.isArray(router.query.address)
     ? router.query.address[0]
-    : router.query.address ?? '';
+    : (router.query.address ?? '');
 
   const commission = useCommission(address);
   const available = useAvailableBalances(address);
@@ -323,7 +292,7 @@ export const useAccountWithdrawalAddr = () => {
   );
   const address = Array.isArray(router.query.address)
     ? router.query.address[0]
-    : router.query.address ?? '';
+    : (router.query.address ?? '');
 
   // ==========================
   // Fetch Data
@@ -358,7 +327,7 @@ export const useAccountRewards = () => {
   );
   const address = Array.isArray(router.query.address)
     ? router.query.address[0]
-    : router.query.address ?? '';
+    : (router.query.address ?? '');
 
   const rewards = useRewards(address);
 
