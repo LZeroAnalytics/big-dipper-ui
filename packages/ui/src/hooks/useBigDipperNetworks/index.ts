@@ -48,7 +48,7 @@ const mapQueryToModel = (data?: Query) => {
       ?.networks?.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'accent' }))
       .map((l) => zBigDipperNetwork.parse(l)) ?? [];
 
-  if (network === 'THORChain') {
+  if (network === 'thorchain') {
     return allNetworks.filter((n) => n.name.toLowerCase().includes('thorchain'));
   }
 
