@@ -40,12 +40,20 @@ export const zQuery = z.object({
 });
 export type Query = z.infer<typeof zQuery>;
 
-// Sort the networks data alphabetically by name
-const mapQueryToModel = (data?: Query) =>
-  zQuery
-    .parse(data)
-    ?.networks?.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'accent' }))
-    .map((l) => zBigDipperNetwork.parse(l)) ?? [];
+// Sort the networks data alphabetically by name and filter to only THORChain for thorchain app
+const mapQueryToModel = (data?: Query) => {
+  const allNetworks =
+    zQuery
+      .parse(data)
+      ?.networks?.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'accent' }))
+      .map((l) => zBigDipperNetwork.parse(l)) ?? [];
+
+  if (network === 'THORChain') {
+    return allNetworks.filter((n) => n.name.toLowerCase().includes('thorchain'));
+  }
+
+  return allNetworks;
+};
 
 // Get the chain ID from a GraphQL query response
 const mapChainIdToModel = (data?: ChainIdQuery) => data?.genesis?.[0]?.chainId ?? '';
