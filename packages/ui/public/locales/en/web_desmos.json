@@ -1,5 +1,5 @@
 {
-  "common.description": "Desmos block explorer is powered by Big Dipper. Big Dipper is an open-source block explorer and token management tool serving over 10 proof-of-stake blockchains. It has been forked more than 100 times on GitHub and has served audiences from 140 countries and regions.",
+  "common.description": "THORChain block explorer is powered by Big Dipper. Big Dipper is an open-source block explorer and token management tool serving over 10 proof-of-stake blockchains. It has been forked more than 100 times on GitHub and has served audiences from 140 countries and regions.",
   "message_contents.txLinkChainAccount": "<0>{{signer}}</0> linked a chain account from <1>{{name}}</1>",
   "message_contents.txMsgLinkApplication": "<0>{{sender}}</0> linked <1>{{username}}<1/> from <1>{{application}}</1>",
   "message_contents.txMsgUnlinkApplication": "<0>{{signer}}</0> unlinked <1>{{username}}</1> from <1>{{application}}</1>",

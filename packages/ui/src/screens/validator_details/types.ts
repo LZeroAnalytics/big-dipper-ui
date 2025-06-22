@@ -38,7 +38,6 @@ export interface ValidatorOverviewState {
 
 export interface ValidatorProfileState {
   exists: boolean;
-  desmosProfile: DesmosProfile | null;
   operatorAddress: string;
   selfDelegateAddress: string;
 }

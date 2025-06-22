@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo';
 import useAppTranslation from '@/hooks/useAppTranslation';
-import DesmosProfile from '@/components/desmos_profile';
 import Layout from '@/components/layout';
 import LoadAndExist from '@/components/load_and_exist';
 import Connections from '@/screens/profile_details/components/connections';
@@ -21,19 +20,9 @@ const ProfileDetails = () => {
       />
       <Layout navTitle={t('profileDetails') ?? undefined}>
         <LoadAndExist loading={loading} exists={state.exists}>
-          {!!state.desmosProfile && (
-            <span className={classes.root}>
-              <DesmosProfile
-                dtag={state.desmosProfile.dtag}
-                nickname={state.desmosProfile.nickname}
-                imageUrl={state.desmosProfile.imageUrl}
-                bio={state.desmosProfile.bio}
-                connections={[]}
-                coverUrl={state.desmosProfile.coverUrl}
-              />
-              <Connections data={state.desmosProfile.connections} />
-            </span>
-          )}
+          <span className={classes.root}>
+            <div>Profile details not available for THORChain</div>
+          </span>
         </LoadAndExist>
       </Layout>
     </>

@@ -10,7 +10,7 @@ import {
   ValidatorAddressQuery,
   useValidatorAddressQuery,
 } from '@/graphql/types/general_types';
-import { useDesmosProfile } from '@/hooks/use_desmos_profile';
+
 import { SlashingParams } from '@/models';
 import {
   StatusType,
@@ -63,7 +63,6 @@ const initialValidatorOverviewState: ValidatorOverviewState = {
 
 const initialValidatorProfileState: ValidatorProfileState = {
   exists: true,
-  desmosProfile: null,
   operatorAddress: '',
   selfDelegateAddress: '',
 };
@@ -74,7 +73,7 @@ export const useValidatorVotingPowerDetails = () => {
 
   const handleSetState = useCallback(
     (stateChange: (prevState: ValidatorVPState) => ValidatorVPState) => {
-      setState(prevState => {
+      setState((prevState) => {
         const newState = stateChange(prevState);
         return R.equals(prevState, newState) ? prevState : newState;
       });
@@ -89,8 +88,8 @@ export const useValidatorVotingPowerDetails = () => {
     variables: {
       address: router.query.address as string,
     },
-    onCompleted: data => {
-      handleSetState(prevState => ({ ...prevState, ...formatValidatorVotingPower(data) }));
+    onCompleted: (data) => {
+      handleSetState((prevState) => ({ ...prevState, ...formatValidatorVotingPower(data) }));
     },
   });
 
@@ -103,7 +102,7 @@ export const useValidatorOverviewDetails = () => {
 
   const handleSetState = useCallback(
     (stateChange: (prevState: ValidatorOverviewState) => ValidatorOverviewState) => {
-      setState(prevState => {
+      setState((prevState) => {
         const newState = stateChange(prevState);
         return R.equals(prevState, newState) ? prevState : newState;
       });
@@ -118,8 +117,8 @@ export const useValidatorOverviewDetails = () => {
     variables: {
       address: router.query.address as string,
     },
-    onCompleted: data => {
-      handleSetState(prevState => ({ ...prevState, ...formatValidatorOverview(data) }));
+    onCompleted: (data) => {
+      handleSetState((prevState) => ({ ...prevState, ...formatValidatorOverview(data) }));
     },
   });
 
@@ -132,7 +131,7 @@ export const useValidatorProfileDetails = () => {
 
   const handleSetState = useCallback(
     (stateChange: (prevState: ValidatorProfileState) => ValidatorProfileState) => {
-      setState(prevState => {
+      setState((prevState) => {
         const newState = stateChange(prevState);
         return R.equals(prevState, newState) ? prevState : newState;
       });
@@ -147,27 +146,11 @@ export const useValidatorProfileDetails = () => {
     variables: {
       address: router.query.address as string,
     },
-    onCompleted: data => {
-      handleSetState(prevState => ({ ...prevState, ...formatValidatorAddress(data) }));
+    onCompleted: (data) => {
+      handleSetState((prevState) => ({ ...prevState, ...formatValidatorAddress(data) }));
     },
   });
 
-  // ==========================
-  // Desmos Profile
-  // ==========================
-  const { data: dataDesmosProfile, loading: loadingDesmosProfile } = useDesmosProfile({
-    addresses: [state.selfDelegateAddress],
-    skip: !extra.profile || !state.selfDelegateAddress,
-  });
-  useEffect(
-    () =>
-      setState(prevState => ({
-        ...prevState,
-        desmosProfile: dataDesmosProfile?.[0],
-        loading: loadingDesmosProfile,
-      })),
-    [dataDesmosProfile, loadingDesmosProfile]
-  );
   return { state, loading };
 };
 

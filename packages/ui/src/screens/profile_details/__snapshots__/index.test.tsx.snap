@@ -36,15 +36,7 @@ exports[`screen: ProfileDetails matches snapshot 1`] = `
     <span
       className="emotion-0"
     >
-      <div
-        bio="hungry all the time"
-        connections={[]}
-        coverUrl="https://ipfs.desmos.network/ipfs/Qmf48cpgi2zNiH24Vo1xtVsePUJx9665gtiRduVCvV5fFg"
-        dtag="HappieSa"
-        id="DesmosProfile"
-        imageUrl="https://ipfs.desmos.network/ipfs/QmTvkdGrtBHHihjVajqqA2HAoHangeKR1oYbQWzasnPi7B"
-        nickname="theHappySamoyed"
-      />
+
       <div
         data={
           [
