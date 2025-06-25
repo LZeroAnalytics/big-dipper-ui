@@ -6,6 +6,7 @@ import {
   NormalizedCacheObject,
   split
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { BatchHttpLink } from '@apollo/client/link/batch-http';
 import { HttpLink } from '@apollo/client/link/http';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
@@ -17,6 +18,8 @@ import { createClient } from 'graphql-ws';
 import { useEffect, useState } from 'react';
 
 const { chainType, endpoints, extra } = chainConfig();
+
+const HASURA_ADMIN_SECRET = process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET;
 
 /* Checking if the code is running on the server or the client. */
 const ssrMode = typeof window === 'undefined';
@@ -63,6 +66,16 @@ function createHttpLink(uri?: string) {
   return new HttpLink({ uri });
 }
 
+/* Creating an authentication link that adds headers to all requests. */
+function createAuthLink() {
+  return setContext((_, { headers }) => ({
+    headers: {
+      ...headers,
+      'x-hasura-admin-secret': HASURA_ADMIN_SECRET,
+    },
+  }));
+}
+
 /**
  * It creates a WebSocketLink object that connects to the GraphQL server via a WebSocket connection
  * @returns A WebSocketLink object.
@@ -78,6 +91,9 @@ function createWebSocketLink(uri?: string) {
         retryWait: (_count) => new Promise((r) => setTimeout(() => r(), 1000)),
         shouldRetry: () => true,
         keepAlive: 30 * 1000,
+        connectionParams: {
+          'x-hasura-admin-secret': HASURA_ADMIN_SECRET,
+        },
       })
     );
   }
@@ -91,6 +107,9 @@ function createWebSocketLink(uri?: string) {
       timeout: 30 * 1000,
       minTimeout: 12 * 1000,
       inactivityTimeout: 30 * 1000,
+      connectionParams: {
+        'x-hasura-admin-secret': HASURA_ADMIN_SECRET,
+      },
     },
   });
 }
@@ -123,11 +142,11 @@ function createApolloClient(initialState = {}) {
     split(
       ({ operationName, variables }) =>
         /^(?:Account|Validator)Delegations$/.test(operationName) && variables?.pagination,
-      createHttpLink(urlEndpoints.find((u) => u)),
-      createHttpBatchLink(urlEndpoints.find((u) => u))
+      createAuthLink().concat(createHttpLink(urlEndpoints.find((u) => u))),
+      createAuthLink().concat(createHttpBatchLink(urlEndpoints.find((u) => u)))
     );
   const httpOrWsLink = ssrMode
-    ? createHttpBatchLink(urlEndpoints.find((u) => u))
+    ? createAuthLink().concat(createHttpBatchLink(urlEndpoints.find((u) => u)))
     : split(
         /* Checking if the query is a subscription. */
         ({ query }) => {
