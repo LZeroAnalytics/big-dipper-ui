@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=node:18-alpine3.18
-ARG PROJECT_NAME=web
+ARG PROJECT_NAME=web-thorchain
 
 # This is a multiple stage Dockerfile.
 # - Stage 1: starter (base image with Node.js 18 and the turbo package installed globally)
@@ -17,6 +17,10 @@ RUN npm i -g turbo
 
 # Stage: builder
 FROM starter AS builder
+
+# ---- System packages required to compile native Node.js add‑ons (e.g. tiny‑secp256k1, @parcel/watcher) ----
+# They are missing in the alpine image and cause node‑gyp failures on arm64.
+RUN apk add --no-cache python3 make g++
 
 ### First install the dependencies (as they change less often)
 COPY . .

@@ -19,7 +19,7 @@ import { useEffect, useState } from 'react';
 
 const { chainType, endpoints, extra } = chainConfig();
 
-const HASURA_ADMIN_SECRET = process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET;
+const HASURA_ADMIN_SECRET = process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET || 'myadminsecretkey';
 
 /* Checking if the code is running on the server or the client. */
 const ssrMode = typeof window === 'undefined';

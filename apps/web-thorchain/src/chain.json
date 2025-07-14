@@ -3,7 +3,7 @@
   "title": "THORChain Explorer",
   "extra": {
     "profile": true,
-    "graphqlWs": false
+    "graphqlWs": true
   },
   "previewImage": "https://s3.bigdipper.live/thorchain.png",
   "themes": {
@@ -205,7 +205,7 @@
       }
     }
   },
-  "keplr": "{\"chainId\":\"thorchain-mainnet-v1\",\"chainName\":\"THORChain\",\"chainSymbolImageUrl\":\"https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/thorchain-mainnet-v1/chain.png\",\"rpc\":\"${NEXT_PUBLIC_RPC_WEBSOCKET}\",\"rest\":\"${NEXT_PUBLIC_GRAPHQL_URL}\",\"nodeProvider\":{\"name\":\"THORChain\",\"email\":\"contact@thorchain.org\",\"website\":\"https://thorchain.org\"},\"bip44\":{\"coinType\":931},\"bech32Config\":{\"bech32PrefixAccAddr\":\"thor\",\"bech32PrefixAccPub\":\"thorpub\",\"bech32PrefixValAddr\":\"thorvaloper\",\"bech32PrefixValPub\":\"thorvaloperpub\",\"bech32PrefixConsAddr\":\"thorvalcons\",\"bech32PrefixConsPub\":\"thorvalconspub\"},\"currencies\":[{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\"}],\"feeCurrencies\":[{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\",\"gasPriceStep\":{\"low\":0.01,\"average\":0.03,\"high\":0.05}}],\"stakeCurrency\":{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\"},\"features\":[]}",
+  "keplr": "{\"chainId\":\"thorchain-mainnet-v1\",\"chainName\":\"THORChain\",\"chainSymbolImageUrl\":\"https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/thorchain-mainnet-v1/chain.png\",\"rpc\":\"ws://127.0.0.1:62437/websocket\",\"rest\":\"http://127.0.0.1:62459/v1/graphql\",\"nodeProvider\":{\"name\":\"THORChain\",\"email\":\"contact@thorchain.org\",\"website\":\"https://thorchain.org\"},\"bip44\":{\"coinType\":931},\"bech32Config\":{\"bech32PrefixAccAddr\":\"thor\",\"bech32PrefixAccPub\":\"thorpub\",\"bech32PrefixValAddr\":\"thorvaloper\",\"bech32PrefixValPub\":\"thorvaloperpub\",\"bech32PrefixConsAddr\":\"thorvalcons\",\"bech32PrefixConsPub\":\"thorvalconspub\"},\"currencies\":[{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\"}],\"feeCurrencies\":[{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\",\"gasPriceStep\":{\"low\":0.01,\"average\":0.03,\"high\":0.05}}],\"stakeCurrency\":{\"coinDenom\":\"RUNE\",\"coinMinimalDenom\":\"rune\",\"coinDecimals\":8,\"coinGeckoId\":\"thorchain\"},\"features\":[]}",
   "chains": [
     {
       "network": "thorchain-mainnet-v1",
@@ -228,9 +228,9 @@
         }
       },
       "endpoints": {
-        "graphql": "${NEXT_PUBLIC_GRAPHQL_URL}",
-        "graphqlWebsocket": "${NEXT_PUBLIC_GRAPHQL_WS}",
-        "publicRpcWebsocket": "${NEXT_PUBLIC_RPC_WEBSOCKET}"
+        "graphql": "http://127.0.0.1:50665/v1/graphql",
+        "graphqlWebsocket": "ws://127.0.0.1:50665/v1/graphql",
+        "publicRpcWebsocket": "ws://127.0.0.1:50646/websocket"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",
@@ -258,9 +258,9 @@
         }
       },
       "endpoints": {
-        "graphql": "${NEXT_PUBLIC_GRAPHQL_URL}",
-        "graphqlWebsocket": "${NEXT_PUBLIC_GRAPHQL_WS}",
-        "publicRpcWebsocket": "${NEXT_PUBLIC_RPC_WEBSOCKET}"
+        "graphql": "http://127.0.0.1:62459/v1/graphql",
+        "graphqlWebsocket": "ws://127.0.0.1:62459/v1/graphql",
+        "publicRpcWebsocket": "ws://127.0.0.1:62437/websocket"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",
