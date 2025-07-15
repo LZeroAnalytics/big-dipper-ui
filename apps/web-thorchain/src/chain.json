@@ -228,9 +228,9 @@
         }
       },
       "endpoints": {
-        "graphql": "http://127.0.0.1:50665/v1/graphql",
-        "graphqlWebsocket": "ws://127.0.0.1:50665/v1/graphql",
-        "publicRpcWebsocket": "ws://127.0.0.1:50646/websocket"
+        "graphql": "/v1/graphql",
+        "graphqlWebsocket": "/v1/graphql",
+        "publicRpcWebsocket": "/websocket"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",
@@ -258,9 +258,9 @@
         }
       },
       "endpoints": {
-        "graphql": "http://127.0.0.1:62459/v1/graphql",
-        "graphqlWebsocket": "ws://127.0.0.1:62459/v1/graphql",
-        "publicRpcWebsocket": "ws://127.0.0.1:62437/websocket"
+        "graphql": "/v1/graphql",
+        "graphqlWebsocket": "/v1/graphql",
+        "publicRpcWebsocket": "/websocket"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",
